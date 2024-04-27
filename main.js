@@ -48,7 +48,9 @@ startBtn.addEventListener("click", ()=>{
 const LeftBtn = document.getElementById("left-btn")
 const rightBtn = document.getElementById("right-btn")
 
-LeftBtn.addEventListener("click", function(){
+LeftBtn.addEventListener("click", function(e){
+  e.preventDefault()
+  e.stopPropagation()
   let turtle = document.querySelector(".turtle")
   let score = document.querySelector("h2")
   let turtleRect = turtle.getBoundingClientRect()
@@ -63,7 +65,9 @@ LeftBtn.addEventListener("click", function(){
   turtle.style.transform = "rotateY(180deg)"
 })
 
-rightBtn.addEventListener("click", function(){
+rightBtn.addEventListener("click", function(e){
+  e.preventDefault()
+  e.stopPropagation()
   let turtle = document.querySelector(".turtle")
   let score = document.querySelector("h2")
   let turtleRect = turtle.getBoundingClientRect()
