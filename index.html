@@ -11,6 +11,10 @@
       <h1>car game</h1>
       <h2>score: 0</h2>
       <div class="turtle"></div>
+      <div class="btn-container" style="display: flex; gap: 2rem; justify-content: space-between;width: 100%;">
+        <button id="left-btn" class="btn-controller"><</button>
+        <button id="right-btn" class="btn-controller">></button>
+      </div>
     </div>
     <script src="./main.js"></script>
   </body>
@@ -32,7 +36,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      display: none;
+      /* display: none; */
     }
     .start-btn{
       font-size: 62px;
@@ -48,24 +52,37 @@
       width: 852px;
       background: url("https://www.shutterstock.com/shutterstock/videos/1028600570/thumb/1.jpg");
       margin: auto;
-      /* display: none; */
+      display: none;
     }
     .turtle{
       background: url("https://scontent.xx.fbcdn.net/v/t1.15752-9/436421366_2097076694040397_2531347803155100938_n.png?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rZSErAaC2U0Ab6k5_y9&_nc_oc=AdjD1MeImZ95Z77QPwsfP5ZiXnohNInh1m6g0HLQoHVrJcy5qn1OGKCe4MKeEBGVxSI1_Z4SCB_ov9LX2EwiYzV2&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QHyXhBIJ6VWTJ05SEe6gVtGumrVD5UY8HYneQPgr5uTKg&oe=664B1885");
       width: 180;
       height: 180;
       position: absolute;
-      bottom: 0;
+      bottom: 200;
       left: 350;
     }
     .car{
-      background: url("https://scontent.xx.fbcdn.net/v/t1.15752-9/436421366_2097076694040397_2531347803155100938_n.png?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rZSErAaC2U0Ab6k5_y9&_nc_oc=AdjD1MeImZ95Z77QPwsfP5ZiXnohNInh1m6g0HLQoHVrJcy5qn1OGKCe4MKeEBGVxSI1_Z4SCB_ov9LX2EwiYzV2&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QHyXhBIJ6VWTJ05SEe6gVtGumrVD5UY8HYneQPgr5uTKg&oe=664B1885");
+      background: url("./img/carImg.png");
       width: 180;
       height: 180;
+      background-size: contain;
       position: absolute;
       top: -400;
       /* left: 300; */
       transform: rotate(180deg);
     }
+    .btn-container{
+      position: absolute;
+      bottom: 0;
+    }
+    .btn-controller{
+      font-size: 84px;
+      background: transparent;
+      border: 0;
+      padding: 2rem;
+      cursor: pointer;
+    }
+
   </style>
 </html>

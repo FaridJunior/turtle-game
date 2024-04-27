@@ -45,6 +45,39 @@ startBtn.addEventListener("click", ()=>{
   startScreen.style.display = "none"
 })
 
+const LeftBtn = document.getElementById("left-btn")
+const rightBtn = document.getElementById("right-btn")
+
+LeftBtn.addEventListener("click", function(){
+  let turtle = document.querySelector(".turtle")
+  let score = document.querySelector("h2")
+  let turtleRect = turtle.getBoundingClientRect()
+
+  console.log({turtleRect})
+  scorevalue = scorevalue + 1
+  score.innerHTML = "score: " + scorevalue
+  if(turtle.offsetLeft - 10 < 100){
+    return
+  }
+  turtle.style.left = turtle.offsetLeft - 10
+  turtle.style.transform = "rotateY(180deg)"
+})
+
+rightBtn.addEventListener("click", function(){
+  let turtle = document.querySelector(".turtle")
+  let score = document.querySelector("h2")
+  let turtleRect = turtle.getBoundingClientRect()
+
+  console.log({turtleRect})
+  scorevalue = scorevalue + 1
+  score.innerHTML = "score: " + scorevalue
+  if(turtle.offsetLeft + 10 > 570){
+    return
+  }
+  turtle.style.left = turtle.offsetLeft + 10
+  turtle.style.transform = "rotateY(0deg"
+})
+
 
 
 function getRandomNumber(min, max) {
@@ -61,7 +94,9 @@ setInterval(()=>{
   setInterval(() =>{
     car.style.top = car.offsetTop + 10
     let turtle = document.querySelector(".turtle")
-
+    if(car.offsetTop > board.offsetHeight){
+      car.offsetParent.removeChild(car)
+    }
   }, 20)
 
 }, 5000)
