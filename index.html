@@ -12,8 +12,8 @@
       <h2>score: 0</h2>
       <div class="turtle"></div>
       <div class="btn-container" style="display: flex; gap: 2rem; justify-content: space-between;width: 100%;">
-        <button id="left-btn" class="btn-controller"><</button>
-        <button id="right-btn" class="btn-controller">></button>
+        <button id="left-btn" class="btn-controller disable-dbl-tap-zoom"><</button>
+        <button id="right-btn" class="btn-controller disable-dbl-tap-zoom">></button>
       </div>
     </div>
     <script src="./main.js"></script>
@@ -82,6 +82,10 @@
       border: 0;
       padding: 2rem;
       cursor: pointer;
+      user-select: none;
+    }
+    .disable-dbl-tap-zoom {
+      touch-action: manipulation;
     }
 
   </style>
