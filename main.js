@@ -33,7 +33,7 @@ startBtn.addEventListener("click", () => {
   startScreen.style.display = "none";
 });
 
-rightBtn.addEventListener("touchstart", function (e) {
+LeftBtn.addEventListener("touchstart", function (e) {
   moveLeftTimer = setInterval(() => {
     moveLeft()
   }, 100);
