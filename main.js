@@ -2,6 +2,7 @@ const LeftBtn = document.getElementById("left-btn");
 const rightBtn = document.getElementById("right-btn");
 const startBtn = document.querySelector(".start-btn");
 const startScreen = document.querySelector(".start");
+const pauseBtn = document.querySelector(".pause-btn");
 
 // CONSTANTS
 const SPEED = 30;
@@ -115,9 +116,14 @@ window.addEventListener("focus", () => {
   resumeGame();
 });
 
+pauseBtn.addEventListener("click", () => {
+  pauseGame();
+  startScreen.style.display = "block";
+  board.style.display = "none";
+  started = false;
+})
 
 // UTILS
-
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -165,8 +171,8 @@ function createEnemyCar() {
 
 
 function startMusic() {
-  audio.loop = true;
   audio.play();
+  audio.loop = true;
 }
 
 function stopMusic() {
