@@ -1,28 +1,21 @@
+const LeftBtn = document.getElementById("left-btn");
+const rightBtn = document.getElementById("right-btn");
+const startBtn = document.querySelector(".start-btn");
+const startScreen = document.querySelector(".start");
+
+// CONSTANTS
+const SPEED = 30;
+
+// VARIABLES
 let started = false;
-let scorevalue = 0;
+let moveLeftTimer;
+let moveRightTimer;
 
 document.addEventListener("keydown", (event) => {
-  let turtle = document.querySelector(".turtle");
-  let score = document.querySelector("h2");
-  let turtleRect = turtle.getBoundingClientRect();
-
-  console.log({ turtleRect });
-  scorevalue = scorevalue + 1;
-
-  score.innerHTML = "score: " + scorevalue;
   if (event.key == "ArrowLeft") {
-    console.log(turtle.offsetLeft);
-    if (turtle.offsetLeft - 10 < 100) {
-      return;
-    }
-    turtle.style.left = turtle.offsetLeft - 10;
-    turtle.style.transform = "rotateY(180deg)";
+    moveLeft()
   } else if (event.key == "ArrowRight") {
-    if (turtle.offsetLeft + 10 > 570) {
-      return;
-    }
-    turtle.style.left = turtle.offsetLeft + 10;
-    turtle.style.transform = "rotateY(0deg";
+    moveRight()
   }
 });
 
@@ -33,8 +26,6 @@ setInterval(() => {
   board.style.backgroundPosition = "0 " + scrollValue;
 }, 20);
 
-const startBtn = document.querySelector(".start-btn");
-const startScreen = document.querySelector(".start");
 
 startBtn.addEventListener("click", () => {
   started = true;
@@ -42,41 +33,45 @@ startBtn.addEventListener("click", () => {
   startScreen.style.display = "none";
 });
 
-const LeftBtn = document.getElementById("left-btn");
-const rightBtn = document.getElementById("right-btn");
-
-LeftBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-  let turtle = document.querySelector(".turtle");
-  let score = document.querySelector("h2");
-  let turtleRect = turtle.getBoundingClientRect();
-
-  console.log({ turtleRect });
-  scorevalue = scorevalue + 1;
-  score.innerHTML = "score: " + scorevalue;
-  if (turtle.offsetLeft - 10 < 100) {
-    return;
-  }
-  turtle.style.left = turtle.offsetLeft - 10;
-  turtle.style.transform = "rotateY(180deg)";
+rightBtn.addEventListener("touchstart", function (e) {
+  moveLeftTimer = setInterval(() => {
+    moveLeft()
+  }, 100);
 });
 
-rightBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-  let turtle = document.querySelector(".turtle");
-  let score = document.querySelector("h2");
-  let turtleRect = turtle.getBoundingClientRect();
+LeftBtn.addEventListener("touchend", function (e) {
+  clearInterval(moveLeftTimer);
+});
 
-  console.log({ turtleRect });
-  scorevalue = scorevalue + 1;
-  score.innerHTML = "score: " + scorevalue;
-  if (turtle.offsetLeft + 10 > 570) {
-    return;
-  }
-  turtle.style.left = turtle.offsetLeft + 10;
-  turtle.style.transform = "rotateY(0deg";
+LeftBtn.addEventListener("mousedown", function (e) {
+  moveLeftTimer = setInterval(() => {
+    moveLeft()
+  }, 100);
+});
+
+LeftBtn.addEventListener("mouseup", function (e) {
+  clearInterval(moveLeftTimer);
+});
+
+
+rightBtn.addEventListener("touchstart", function (e) {
+  moveRightTimer = setInterval(() => {
+    moveRight()
+  }, 100);
+});
+
+rightBtn.addEventListener("touchend", function (e) {
+  clearInterval(moveRightTimer);
+});
+
+rightBtn.addEventListener("mousedown", function (e) {
+  moveRightTimer = setInterval(() => {
+    moveRight()
+  }, 100);
+});
+
+rightBtn.addEventListener("mouseup", function (e) {
+  clearInterval(moveRightTimer);
 });
 
 function getRandomNumber(min, max) {
@@ -90,10 +85,28 @@ setInterval(() => {
   car.style.left = getRandomNumber(150, 540);
 
   setInterval(() => {
-    car.style.top = car.offsetTop + 10;
-    let turtle = document.querySelector(".turtle");
+    car.style.top = car.offsetTop + 5;
     if (car.offsetTop > board.offsetHeight) {
       car.offsetParent.removeChild(car);
     }
-  }, 20);
+  }, 10);
 }, 5000);
+
+
+
+function moveLeft(){
+  let turtle = document.querySelector(".turtle");
+  if (turtle.offsetLeft - SPEED < 120) {
+    return;
+  }
+  turtle.style.left = turtle.offsetLeft - SPEED;
+}
+
+function moveRight(){
+  let turtle = document.querySelector(".turtle");
+  if (turtle.offsetLeft + SPEED > 570) {
+    return;
+  }
+  turtle.style.left = turtle.offsetLeft + SPEED;
+}
+
